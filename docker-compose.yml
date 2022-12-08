@@ -1,0 +1,43 @@
+version: '2'
+
+services:
+  mariadb:
+    container_name: db
+    restart: always
+    image: docker.io/bitnami/mariadb:10.6
+    volumes:
+      - ./db:/bitnami/mariadb/
+    ports:
+    - 3306:3306
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ROOT
+      - MYSQL_ROOT_PASSWORD=root
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_myapp
+      - MARIADB_DATABASE=bitnami_myapp
+  backend:
+    container_name: backend
+    image: docker.io/bitnami/laravel:9
+    ports:
+      - '8000:8000'
+    environment:
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_USERNAME=bn_myapp
+      - DB_DATABASE=bitnami_myapp
+    volumes:
+      - './backend:/app'
+    depends_on:
+      - mariadb
+  frontend:
+    image: salriel/nginx_node
+    container_name: frontend
+    ports:
+    - '5174:5174'
+    - '80:80'
+    volumes:
+      - ./frontend/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./frontend:/app
+    depends_on:
+      - backend
