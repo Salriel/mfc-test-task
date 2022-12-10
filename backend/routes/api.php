@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RequestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('test', function (Request $request){
     return "It's test backend response!";
 });
+
+Route::prefix('/request')
+    ->controller(RequestController::class)
+    ->group(function (){
+        Route::get('/list', 'list');
+
+        Route::get('/{request}', 'get');
+        Route::post('/{request}', 'create');
+        Route::put('/{request}', 'update');
+        Route::delete('/{request}', 'delete');
+    });
+
+
+
+
+

@@ -4,7 +4,7 @@
 
 <script>
 import axios from "../axios";
-import List from "../components/Requests/List.vue";
+import List from "../components/requests/List.vue";
 
 export default {
   name: "RequestList",

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory} from 'vue-router'
 import DefaultLayout from "../layouts/DefaultLayout.vue";
 import RequestList from "../views/RequestList.vue";
+import RequestEdit from "../views/RequestEdit.vue";
 
 
 const routes = [
@@ -13,6 +14,7 @@ const routes = [
         component: DefaultLayout,
         children: [
             { path: '/list', component: RequestList, name: 'RequestList' },
+            { path: '/edit', component: RequestEdit, name: 'RequestEdit' },
         ]
     },
 ];
