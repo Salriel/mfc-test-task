@@ -8,4 +8,4 @@
 Чтобы выключить проек, нужно ввести команду `docker-compose down`.
 ---
 
-Консольная команда для удаления старых завершенных заявок - `php artisan delete-old-requests`.
+Консольная команда для удаления старых завершенных заявок - `docker exec -it backend php artisan delete-old-requests`.
