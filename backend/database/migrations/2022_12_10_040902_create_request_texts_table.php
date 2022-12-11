@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('request_texts', function (Blueprint $table) {
             $table->id();
-            $table->text('text');
+            $table->text('value');
             $table->timestamps();
         });
     }

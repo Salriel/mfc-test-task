@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RequestController;
+use App\Models\RequestStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +31,7 @@ Route::prefix('/request')
 
         Route::get('/{request}', 'get');
         Route::post('/', 'create');
-        Route::put('/{request}', 'update');
+        Route::post('/{request}', 'update');
         Route::delete('/{request}', 'delete');
     });
 

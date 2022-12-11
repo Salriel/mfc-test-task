@@ -1,9 +1,8 @@
 import axios from "axios";
-import config from "tailwindcss/defaultConfig";
-
+import config from "./config";
 
 const axiosClient = axios.create({
-   baseURL: 'http://localhost:8000/api'
+   baseURL: 'http://' + config.backend_domain + '/api'
 });
 
 axiosClient.interceptors.request.use(config => {

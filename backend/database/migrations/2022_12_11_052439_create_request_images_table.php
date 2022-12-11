@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('request_images', function (Blueprint $table) {
             $table->id();
             $table->string('filepath')->nullable();
+            $table->string('original_name')->nullable();
             $table->foreignId('request_id');
             $table->timestamps();
         });

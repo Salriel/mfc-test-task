@@ -14,7 +14,8 @@ const routes = [
         component: DefaultLayout,
         children: [
             { path: '/list', component: RequestList, name: 'RequestList' },
-            { path: '/edit', component: RequestEdit, name: 'RequestEdit' },
+            { path: '/create', component: RequestEdit, name: 'RequestCreate' },
+            { path: '/edit/:slug?', component: RequestEdit, name: 'RequestEdit' },
         ]
     },
 ];

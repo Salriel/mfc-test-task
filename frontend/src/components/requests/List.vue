@@ -37,20 +37,36 @@ export default {
   data() {
     return {
       'requests': [
-        {'id': 1, 'title': 'Хочу в отпуск', 'images': [], 'status': 'Новая', 'created_at': 'now'},
-        {'id': 2, 'title': 'ЗП', 'images': [], 'status': 'Новая', 'created_at': 'now'},
-        {'id': 3, 'title': 'Хмммм', 'images': [], 'status': 'Новая', 'created_at': 'now'}
       ]
     }
   },
   components: {
     Item, Th
   },
+  mounted() {
+    this.loadData();
+    let intervalId = window.setInterval(()=>{
+      this.loadData();
+    }, 30000);
+  },
   methods: {
-    loadData: () => {
-      axios.get('/test').then(function (response) {
-        console.log(response);
-      })
+    loadData: function () {
+      axios.get('/request/list')
+        .then((response) => {
+          let requests = response.data.data;
+          this.requests = [];
+          requests.forEach((request)=>{
+            let created_at = new Date(request.created_at);
+            this.requests.push({
+              'id' : request.id,
+              'status' : request.status.name,
+              'title' : request.title,
+              'images' : request.image,
+              'created_at': created_at.toLocaleString('ru-ru'),
+              'is_new' : (3600000 < new Date() - created_at) && request.status.id === 1,
+            });
+          });
+        });
     },
   }
 }

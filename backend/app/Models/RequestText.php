@@ -15,7 +15,7 @@ class RequestText extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'text'
+        'value'
     ];
 
     public function request(){
