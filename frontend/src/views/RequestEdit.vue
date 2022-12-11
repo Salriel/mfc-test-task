@@ -72,7 +72,7 @@ export default {
   mounted() {
     this.slug =  this.$route.params.slug;
     if(this.slug){
-      axios.get('/request/'+this.slug+'?huy=2')
+      axios.get('/request/'+this.slug)
           .then((response) =>{
             let request = response.data.data.request;
             this.form.title = request.title;
