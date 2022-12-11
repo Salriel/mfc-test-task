@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Http\UploadedFile;
 
 /**
  * Class Request
  * @package App\Models
  *
+ * @property int $id
  * @property string $title
  * @property string $text_id
  * @property string $status_id
@@ -37,6 +39,26 @@ class Request extends Model
     public function text(): HasOne
     {
         return $this->hasOne(RequestText::class);
+    }
+    public function image()
+    {
+        return $this->hasMany(RequestImage::class);
+    }
+
+    public function addImages(array $images){
+        foreach ($images as $image){
+            $this->addImage($image);
+        }
+    }
+
+    public function addImage(UploadedFile $image){
+        $file = $image;
+        $filename= date('YmdHi').$file->getClientOriginalName();
+        $file->move(public_path("image/requests/$this->id"), $filename);
+        $this->image()->insert([
+            'request_id' => $this->id,
+            'filepath' => "image/requests/$this->id/$filename",
+        ]);
     }
 
     public function save(array $options = [])

@@ -1,10 +1,9 @@
 <template>
   <div class="h-screen">
-
-    <div class="flex justify-center">
-        <div class="max-w-6xl">
-        <Header/>
-        <router-view></router-view>
+    <div class="flex justify-center ">
+      <div class="max-w-6xl">
+          <Header/>
+          <router-view></router-view>
       </div>
     </div>
   </div>

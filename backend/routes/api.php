@@ -29,7 +29,7 @@ Route::prefix('/request')
         Route::get('/list', 'list');
 
         Route::get('/{request}', 'get');
-        Route::post('/{request}', 'create');
+        Route::post('/', 'create');
         Route::put('/{request}', 'update');
         Route::delete('/{request}', 'delete');
     });

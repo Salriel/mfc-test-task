@@ -3,7 +3,7 @@
     <div class="">
       <div class="py-4">
         <div class="relative flex items-center justify-between">
-          <router-link to="/list" class="bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-lg">
+          <router-link to="/list" class="bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-lg ">
             Список
           </router-link>
           <router-link to="/edit" class="bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-lg">
